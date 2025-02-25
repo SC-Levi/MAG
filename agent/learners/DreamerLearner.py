@@ -167,7 +167,7 @@ class DreamerLearner:
         self._max_epochs_since_update = 4
         self._epochs_since_update = 0
         self._snapshots = {i: (None, 1e10) for i in range(self.config.n_nets)}
-
+    # model-reward predictor,考虑对未来多步预测的影响，从全局角度降低误差
     def train_m_r_predictor(self, mini_sample, mini_loss):
         self.m_r_predictor.train()
         assert len(self.model) == 1
